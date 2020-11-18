@@ -11,11 +11,13 @@ router.post('/register', function(request,response){
     let username = request.body.user.username;
     let email = request.body.user.email;
     let pass = request.body.user.password;
+    let admin = request.body.user.admin;
 
     User.create({
         username: username,
         email: email,
-        password: bcrypt.hashSync(pass,10)
+        password: bcrypt.hashSync(pass,10),
+        admin: admin
     }).then(
         function createSuccess(user) {
             let token = jwt.sign({id: user.id},process.env.JWT_SECRET,{expiresIn: 60*60*24});

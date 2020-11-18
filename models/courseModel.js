@@ -3,7 +3,7 @@ module.exports = function (sequelize, DataTypes){
        location: DataTypes.STRING,
        golf_course:DataTypes.STRING,
        rating: DataTypes.INTEGER,
-       notes: DataTypes.STRING,
+       notes: DataTypes.TEXT,
        user_id: DataTypes.INTEGER
     });
 };

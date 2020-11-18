@@ -7,10 +7,11 @@ let sequelize = require('./db');
 let user = require('./controllers/userController');
 let course = require('./controllers/courseController');
 let score = require('./controllers/scoreController');
+let scorecard = require('./controllers/cardController');
 
 sequelize.authenticate().then(async()=>{
     console.log('Database is connected');
-    sequelize.sync();
+    sequelize.sync();//{force: true} - will clear databases
 })
 .catch((e)=>{
     console.log(e);
@@ -25,7 +26,8 @@ app.use(require('./middlewares/cors'));
 
 app.use('/user',user);
 app.use('/course',course);
-app.use('/score',score)
+app.use('/score',score);
+app.use('/scorecard', scorecard);
 
 
 app.listen(process.env.PORT, function(){

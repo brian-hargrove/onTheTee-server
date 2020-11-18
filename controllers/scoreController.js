@@ -5,6 +5,7 @@ let User = require('../models/user')(sequelize,require("sequelize"));
 let Course = require('../models/courseModel')(sequelize,require("sequelize"));
 let Score = require('../models/scoreModel')(sequelize,require("sequelize"));
 let validateSession = require('../middlewares/validate-session');
+const ScoreModel = require('../models/scoreModel');
 
 
 //Create (POST) new score
@@ -76,7 +77,7 @@ router.post('/new',validateSession, function(request, response){
     );
 });
 
-//Get (GET) a list of saved scores
+// Get (GET) a list of saved scores
 router.get('/all',validateSession, function(request,response){
     let userid=request.user.id;
     
@@ -92,6 +93,20 @@ router.get('/all',validateSession, function(request,response){
         }
     );
 });
+
+router.get('/allscore',validateSession,(request,response)=>{
+    ScoreModel.findOne({
+        where: {
+            userId: request.user.id
+        }
+    })
+    .then(function createSuccess(data){
+        response.status(200).json({
+            message: 'user info found',
+            data: data
+        })
+    }).catch(err=>response.status(500).json('score info not found',err))
+})
 
 //Update(PUT) scores & rating for course
 router.put('/:id', function(request, response){

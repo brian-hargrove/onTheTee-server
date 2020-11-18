@@ -25,6 +25,6 @@ module.exports = function (sequelize, DataTypes){
        back9: DataTypes.INTEGER,
        total: DataTypes.INTEGER,
        rating: DataTypes.INTEGER,
-       notes: DataTypes.STRING,
+       notes: DataTypes.TEXT,
     });
 };

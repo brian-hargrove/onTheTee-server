@@ -14,4 +14,13 @@ sequelize.authenticate().then(
     }
 );
 
+//! NEW
+User = sequelize.import('./models/user');
+ScoreModel = sequelize.import('./models/scoreModel');
+
+User.hasOne(ScoreModel);
+ScoreModel.belongsTo(User);
+//!
+
+
 module.exports = sequelize;
