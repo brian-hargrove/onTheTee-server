@@ -5,7 +5,7 @@ let User = require('../models/user')(sequelize,require("sequelize"));
 let Course = require('../models/courseModel')(sequelize,require("sequelize"));
 let Score = require('../models/scoreModel')(sequelize,require("sequelize"));
 let validateSession = require('../middlewares/validate-session');
-const ScoreModel = require('../models/scoreModel');
+let ScoreModel = require('../models/scoreModel');
 
 
 //Create (POST) new score

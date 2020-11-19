@@ -8,6 +8,7 @@ let user = require('./controllers/userController');
 let course = require('./controllers/courseController');
 let score = require('./controllers/scoreController');
 let scorecard = require('./controllers/cardController');
+let userinfo = require('./controllers/userInfoController');
 
 sequelize.authenticate().then(async()=>{
     console.log('Database is connected');
@@ -27,6 +28,7 @@ app.use(require('./middlewares/cors'));
 app.use('/user',user);
 app.use('/course',course);
 app.use('/score',score);
+app.use('/userinfo',userinfo);
 app.use('/scorecard', scorecard);
 
 
