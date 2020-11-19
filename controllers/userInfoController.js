@@ -15,13 +15,14 @@ router.post('/new',validateSession, function(request, response){
     let favCourse = request.body.userinfo.favCourse;
     let favGolfer = request.body.userinfo.favGolfer;
     
+    
 
     UserInfo.create({
-        user_id,
         dateOfBirth,
         hand,
         favCourse,
-        favGolfer
+        favGolfer,
+        user_id
     })
     .then(
         function createSuccess(data){
@@ -37,15 +38,16 @@ router.get('/getuser',validateSession, (request,response)=>{
     UserInfo.findOne({
         where: {
             userId: request.user.id
-        },
-        include: ['user','scoreModal']
+        }
+        // , 
+        // include: 'user'
     })
     .then(function createSuccess(data){
         response.status(200).json({
             message: 'User Info Found',
             data:data
         })
-    }).catch(err=> response.status(500).json('User Info not found',err))
+    }).catch(err=> response.status(500).json(err))
 })
 //Update(PUT) rating for user info
 router.put('/:id', validateSession,function(request, response){

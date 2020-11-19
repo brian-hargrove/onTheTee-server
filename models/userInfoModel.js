@@ -18,7 +18,6 @@ module.exports = function(sequelize,DataTypes) {
         favGolfer: {
             type: DataTypes.STRING,
             allowNull: true
-        },
-        user_id: DataTypes.INTEGER,
+        }
     })
 }

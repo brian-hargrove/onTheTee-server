@@ -97,7 +97,7 @@ router.get('/all',validateSession, function(request,response){
 router.get('/allscore',validateSession,(request,response)=>{
     ScoreModel.findOne({
         where: {
-            userId: request.user.id
+            user_id: request.user.id
         }
     })
     .then(function createSuccess(data){
