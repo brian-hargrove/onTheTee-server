@@ -33,5 +33,5 @@ app.use('/scorecard', scorecard);
 
 
 app.listen(process.env.PORT, function(){
-    console.log('App is listening on 3000.')
+    console.log(`App is listening on ${process.env.PORT}.`)
 });

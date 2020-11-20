@@ -16,7 +16,7 @@ sequelize.authenticate().then(
 
 //! NEW
 let User = require('./models/user')(sequelize,require("sequelize"));
-let Score = require('./models/scoreModel')(sequelize,require("sequelize"));
+// let Score = require('./models/scoreModel')(sequelize,require("sequelize"));
 let UserInfo = require('./models/userInfoModel')(sequelize,require("sequelize"));
 
 // User.hasMany(ScoreModel);
@@ -26,13 +26,14 @@ let UserInfo = require('./models/userInfoModel')(sequelize,require("sequelize"))
 // Score = sequelize.import('./models/scoreModel');
 // UserInfo = sequelize.import('./models/userInfoModel');
 
-Score.belongsTo(User);
-User.hasMany(Score);
+// Score.belongsTo(User);
+// User.hasMany(Score);
 
 User.hasOne(UserInfo);
 UserInfo.belongsTo(User);
 
-
+// UserInfo.hasOne(User);
+// User.belongsTo(UserInfo);
 
 
 module.exports = sequelize;

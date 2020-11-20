@@ -16,8 +16,9 @@ module.exports = function (sequelize, DataTypes){
             type: DataTypes.STRING,
             allowNull: false
         },
-        admin: {
-            type: DataTypes.BOOLEAN,
+        role: {
+            type: DataTypes.STRING,
+            
             
         }
         
