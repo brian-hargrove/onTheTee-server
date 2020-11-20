@@ -1,10 +1,14 @@
 let router = require('express').Router();
 const { request } = require('express');
-const { validate } = require('../db');
 let sequelize=require('../db');
-let User = require('../models/user')(sequelize,require("sequelize"));
-let UserInfo = require('../models/userInfoModel')(sequelize,require("sequelize"));
+let User = sequelize.import('../models/user')
+let UserInfo = sequelize.import('../models/userInfoModel')
+let Score = sequelize.import('../models/scoreModel')
+let CourseModel = sequelize.import('../models/courseModel')
+let CardModel = sequelize.import('../models/cardModel')
 let validateSession = require('../middlewares/validate-session');
+
+const { unsubscribe } = require('./userController');
 
 
 //Create (POST) new user info
@@ -34,7 +38,7 @@ router.post('/new',validateSession, function(request, response){
     );
 });
 
-router.get('/getuser',validateSession, (request,response)=>{
+router.get('/getuserinfo',validateSession, (request,response)=>{
     UserInfo.findOne({
         where: {
              user_id: request.user.id
@@ -49,7 +53,7 @@ router.get('/getuser',validateSession, (request,response)=>{
         })
     }).catch(err=> response.status(500).json(err))
 })
-//Update(PUT) rating for user info
+//Update(PUT) user info
 router.put('/:id', validateSession,function(request, response){
     let data = request.params.id;
     let dateOfBirth = request.body.userinfo.dateOfBirth;
@@ -58,7 +62,7 @@ router.put('/:id', validateSession,function(request, response){
     let favGolfer = request.body.userinfo.favGolfer;
 
     UserInfo.update({
-        dateOfBirgh: dateOfBirth,
+        dateOfBirth: dateOfBirth,
         hand: hand,
         favCourse: favCourse,
         favGolfer: favGolfer
@@ -67,7 +71,7 @@ router.put('/:id', validateSession,function(request, response){
     {where: {id: data}}
     ).then(
         function updateSuccess(updatedLog){
-            response.send(`Course ${data} updated!`);
+            response.send(`Userinfo ${data} updated!`);
         },
         function updateError(err){
             response.send(500,err.message);

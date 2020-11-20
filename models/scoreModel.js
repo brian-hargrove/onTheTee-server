@@ -1,7 +1,6 @@
 module.exports = function (sequelize, DataTypes){
     return sequelize.define('score', {
-       golf_course:DataTypes.STRING,
-       user_id: DataTypes.INTEGER,
+       golfcourse:DataTypes.STRING,
        date: DataTypes.DATEONLY,
        hole1: DataTypes.INTEGER,
        hole2: DataTypes.INTEGER,

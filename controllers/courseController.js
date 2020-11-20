@@ -1,22 +1,23 @@
 let router = require('express').Router();
 const { validate } = require('../db');
 let sequelize=require('../db');
-let User = require('../models/user')(sequelize,require("sequelize"));
-let Course = require('../models/courseModel')(sequelize,require("sequelize"));
+let User = sequelize.import('../models/user')
+let UserInfo = sequelize.import('../models/userInfoModel')
+let Score = sequelize.import('../models/scoreModel')
+let CourseModel = sequelize.import('../models/courseModel')
+let CardModel = sequelize.import('../models/cardModel')
 let validateSession = require('../middlewares/validate-session');
 
 
 //Create (POST) new course
 router.post('/new',validateSession, function(request, response){
-    let user_id = request.user.id;
-    let golf_course = request.body.course.golf_course;
+    let golfcourse = request.body.course.golfcourse;
     let location = request.body.course.location;
     let rating = request.body.course.rating;
     let notes = request.body.course.notes;
 
     Course.create({
-        user_id,
-        golf_course,
+        golfcourse,
         location,
         rating,
         notes

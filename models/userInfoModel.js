@@ -2,7 +2,7 @@ module.exports = function(sequelize,DataTypes) {
     return sequelize.define('userinfo', {
         dateOfBirth: {
             type: DataTypes.DATEONLY,
-            allowNull: false,
+            allowNull: true,
             validate: {
                 isBefore: "2002-01-01"
             }
@@ -18,7 +18,6 @@ module.exports = function(sequelize,DataTypes) {
         favGolfer: {
             type: DataTypes.STRING,
             allowNull: true
-        },
-        user_id: DataTypes.INTEGER,
+        }
     })
 }

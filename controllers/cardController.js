@@ -2,18 +2,18 @@ let router = require('express').Router();
 const { request } = require('express');
 const { validate } = require('../db');
 let sequelize=require('../db');
-let User = require('../models/user')(sequelize,require("sequelize"));
-let Course = require('../models/courseModel')(sequelize,require("sequelize"));
-let Score = require('../models/scoreModel')(sequelize,require("sequelize"));
-let Card = require('../models/cardModel')(sequelize,require("sequelize"));
+let User = sequelize.import('../models/user')
+let UserInfo = sequelize.import('../models/userInfoModel')
+let Score = sequelize.import('../models/scoreModel')
+let CourseModel = sequelize.import('../models/courseModel')
+let CardModel = sequelize.import('../models/cardModel')
 let validateSession = require('../middlewares/validate-session');
 const ScoreModel = require('../models/scoreModel');
 
 
 //Create (POST) new course information
 router.post('/new',validateSession, function(request, response){
-    let user_id = request.user.id;
-    let golf_course = request.body.cards.golf_course;
+    let golfcourse = request.body.cards.golfcourse;
     let par1 = request.body.cards.par1;
     let par2 = request.body.cards.par2;
     let par3 = request.body.cards.par3;
@@ -77,8 +77,7 @@ router.post('/new',validateSession, function(request, response){
     
 
     Card.create({
-        user_id,
-        golf_course,
+        golfcourse,
         par1,
         par2,
         par3,

@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize(process.env.DATABASE_URL, {
-    host: 'localhost',
+const sequelize = new Sequelize("nowonthetee","postgres","Morgan7576", {
+    host: "localhost",
     dialect: 'postgres'
 });
 
@@ -14,28 +14,30 @@ sequelize.authenticate().then(
     }
 );
 
-//! NEW
-let User = require('./models/user')(sequelize,require("sequelize"));
-// let Score = require('./models/scoreModel')(sequelize,require("sequelize"));
-let UserInfo = require('./models/userInfoModel')(sequelize,require("sequelize"));
 
-// User.hasMany(ScoreModel);
-// ScoreModel.belongsTo(User);
-//!
-// User = sequelize.import('./models/user');
-// Score = sequelize.import('./models/scoreModel');
-// UserInfo = sequelize.import('./models/userInfoModel');
+let User = sequelize.import('./models/user')
+let UserInfo = sequelize.import('./models/userInfoModel')
+let Score = sequelize.import('./models/scoreModel')
+let CourseModel = sequelize.import('./models/courseModel')
+let CardModel = sequelize.import('./models/cardModel')
 
-// Score.belongsTo(User);
-// User.hasMany(Score);
+
 
 User.hasOne(UserInfo);
 UserInfo.belongsTo(User);
 
-// UserInfo.hasOne(User);
-// User.belongsTo(UserInfo);
+User.hasMany(CourseModel);
+CourseModel.belongsTo(User);
+
+User.hasMany(Score);
+Score.belongsTo(User);
+
+CardModel.hasMany(Score);
+Score.belongsTo(CardModel);
+
+CourseModel.hasMany(Score);
+Score.belongsTo(CourseModel);
+
 
 
 module.exports = sequelize;
-
-
