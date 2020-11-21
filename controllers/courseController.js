@@ -16,7 +16,7 @@ router.post('/new',validateSession, function(request, response){
     let rating = request.body.course.rating;
     let notes = request.body.course.notes;
 
-    Course.create({
+    CourseModel.create({
         golfcourse,
         location,
         rating,
@@ -34,10 +34,10 @@ router.post('/new',validateSession, function(request, response){
 
 //Get (GET) a list of saved courses
 router.get('/all',validateSession, function(request,response){
-    let userid=request.user.id;
+    let userid=request.course.id;
     
-    Course.findAll({
-        where: {user_id: userid}
+    CourseModel.findAll({
+        where: {userid: course.id}
     })
     .then(
         function findAllSuccess(data){
@@ -55,7 +55,7 @@ router.put('/:id', function(request, response){
     let rating = request.body.course.rating;
     let notes = request.body.course.notes;
 
-    Course.update({
+    CourseModel.update({
         rating: rating,
         notes:notes
     },
@@ -70,32 +70,14 @@ router.put('/:id', function(request, response){
     )
 });
 
-//Update(PUT) notes for course
-// router.put('/:id', function(request, response){
-//     let data = request.params.id;
-//     let notes = request.body.course.notes;
-
-//     Course.update({
-//         notes: notes
-//     },
-//     {where: {id: data}}
-//     ).then(
-//         function updateSuccess(updatedLog){
-//             response.send(`Course ${data} updated!`);
-//         },
-//         function updateError(err){
-//             response.send(500,err.message);
-//         }
-//     )
-// });
 
 //Remove(DELETE) a course
 router.delete('/:id',validateSession, function(request, response){
     let data = request.params.id;
-    let user_id=request.user.id;
+    // let user_id=request.user.id;
 
-    Course.destroy({
-        where: {id: data, user_id: user_id}
+    CourseModel.destroy({
+        where: {id: data/*, user_id: user_id*/}
     }).then(
         function deleteCourseSuccess(data){
             response.send("Course Deleted");

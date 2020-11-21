@@ -41,10 +41,10 @@ router.post('/new',validateSession, function(request, response){
 router.get('/getuserinfo',validateSession, (request,response)=>{
     UserInfo.findOne({
         where: {
-             user_id: request.user.id
+             id: request.user.id
         }
-        // , 
-        // include: 'user'
+        , 
+        include: 'user'
     })
     .then(function createSuccess(data){
         response.status(200).json({
@@ -79,12 +79,14 @@ router.put('/:id', validateSession,function(request, response){
     )
 });
 
+
+//!De
 router.delete('/:id',validateSession, function(request, response){
     let data = request.params.id;
-    let user_id=request.user.id;
+    // let user_id=request.user.id;
 
     UserInfo.destroy({
-        where: {id: data, user_id: user_id}
+        where: {id: data/*, user_id: user_id*/}
     }).then(
         function deleteUserInfoSuccess(data){
             response.send("UserInfo Deleted");

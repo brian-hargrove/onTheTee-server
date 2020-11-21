@@ -76,7 +76,7 @@ router.post('/new',validateSession, function(request, response){
     let handicap18 = request.body.cards.handicap18;
     
 
-    Card.create({
+    CardModel.create({
         golfcourse,
         par1,
         par2,
@@ -155,8 +155,8 @@ router.post('/new',validateSession, function(request, response){
 router.get('/all',validateSession, function(request,response){
     let userid=request.user.id;
     
-    Card.findAll({
-        where: {user_id: userid}
+    CardModel.findAll({
+        where: {id: userid}
     })
     .then(
         function findAllSuccess(data){
@@ -168,7 +168,7 @@ router.get('/all',validateSession, function(request,response){
     );
 });
 
-//Update(PUT) scores & rating for course
+//Update(PUT) update scorecard
 router.put('/:id', function(request, response){
     let data = request.params.id;
     let par1 = request.body.cards.par1;
@@ -195,7 +195,7 @@ router.put('/:id', function(request, response){
     let yards1 = request.body.cards.yards1;
     let yards2 = request.body.cards.yards2;
     let yards3 = request.body.cards.yards3;
-    let yards4 = request.body.card.yards4;
+    let yards4 = request.body.cards.yards4;
     let yards5 = request.body.cards.yards5;
     let yards6 = request.body.cards.yards6;
     let yards7 = request.body.cards.yards7;
@@ -233,7 +233,7 @@ router.put('/:id', function(request, response){
     let handicap18 = request.body.cards.handicap18;
     
 
-    Card.update({
+    CardModel.update({
         par1: par1,
         par2: par2,
         par3: par3,
@@ -309,10 +309,10 @@ router.put('/:id', function(request, response){
 //Remove(DELETE) a scorecard
 router.delete('/:id',validateSession, function(request, response){
     let data = request.params.id;
-    let user_id=request.user.id;
+    // let user_id=request.user.id;
 
-    Card.destroy({
-        where: {id: data, user_id: user_id}
+    CardModel.destroy({
+        where: {id: data /*, user_id: user_id*/}
     }).then(
         function deleteCardSuccess(data){
             response.send("Card Deleted");

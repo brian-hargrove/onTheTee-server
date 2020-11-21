@@ -82,7 +82,7 @@ router.get('/all',validateSession, function(request,response){
     let userid=request.user.id;
     
     Score.findAll({
-        where: {user_id: userid}
+        where: {userid: userid}
     })
     .then(
         function findAllSuccess(data){
@@ -95,9 +95,9 @@ router.get('/all',validateSession, function(request,response){
 });
 
 router.get('/allscore',validateSession,(request,response)=>{
-    ScoreModel.findOne({
+    Score.findOne({
         where: {
-            user_id: request.user.id
+            userid: request.user.id
         }
     })
     .then(function createSuccess(data){
