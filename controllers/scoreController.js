@@ -37,7 +37,9 @@ router.post('/new',validateSession, function(request, response){
     let total = request.body.score.total;
     let rating = request.body.score.rating;
     let notes = request.body.score.notes;
-
+    let userId = request.user.id;
+    // let cardId = request.card.id;
+    // let courseId = request.course.id;
     
 
     Score.create({
@@ -65,7 +67,10 @@ router.post('/new',validateSession, function(request, response){
         back9,
         total,
         rating,
-        notes
+        notes,
+        userId
+        // cardId: cardId,
+        // courseId: courseId
     })
     .then(
         function createSuccess(data){
@@ -82,7 +87,10 @@ router.get('/all',validateSession, function(request,response){
     let userid=request.user.id;
     
     Score.findAll({
-        where: {userid: userid}
+        where: {
+            userId: userid
+        },
+        include: 'user'
     })
     .then(
         function findAllSuccess(data){

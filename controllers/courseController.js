@@ -11,6 +11,7 @@ let validateSession = require('../middlewares/validate-session');
 
 //Create (POST) new course
 router.post('/new',validateSession, function(request, response){
+    let userId=request.user.id;
     let golfcourse = request.body.course.golfcourse;
     let location = request.body.course.location;
     let rating = request.body.course.rating;
@@ -20,7 +21,8 @@ router.post('/new',validateSession, function(request, response){
         golfcourse,
         location,
         rating,
-        notes
+        notes,
+        userId
     })
     .then(
         function createSuccess(data){

@@ -23,7 +23,7 @@ sequelize.authenticate().then(async()=>{
 // app.use(cors());
 
 app.use(express.json());
-app.use(require('./middlewares/cors'));
+app.use(require('./middlewares/headers'));
 
 app.use('/user',user);
 app.use('/course',course);

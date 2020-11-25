@@ -13,7 +13,7 @@ const { unsubscribe } = require('./userController');
 
 //Create (POST) new user info
 router.post('/new',validateSession, function(request, response){
-    let user_id = request.user.id;
+    let userId = request.user.id;
     let dateOfBirth = request.body.userinfo.dateOfBirth;
     let hand = request.body.userinfo.hand;
     let favCourse = request.body.userinfo.favCourse;
@@ -26,7 +26,7 @@ router.post('/new',validateSession, function(request, response){
         hand,
         favCourse,
         favGolfer,
-        user_id
+        userId
     })
     .then(
         function createSuccess(data){
