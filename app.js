@@ -10,20 +10,21 @@ let score = require('./controllers/scoreController');
 let scorecard = require('./controllers/cardController');
 let userinfo = require('./controllers/userInfoController');
 
-sequelize.authenticate().then(async()=>{
-    console.log('Database is connected');
+// sequelize.authenticate().then(async()=>{
+//     console.log('Database is connected');
     sequelize.sync();//{force: true} - will clear databases
-})
-.catch((e)=>{
-    console.log(e);
-    console.log('Database NOT connected')
-})
+// })
+// .catch((e)=>{
+//     console.log(e);
+//     console.log('Database NOT connected')
+// })
 
-// const cors = require("cors");
-// app.use(cors());
+// const headers = require("headers");
+// app.use(headers());
 
 app.use(express.json());
 app.use(require('./middlewares/headers'));
+// app.use(require('./middlewares/validate-session'))
 
 app.use('/user',user);
 app.use('/course',course);
