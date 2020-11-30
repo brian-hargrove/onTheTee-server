@@ -36,10 +36,11 @@ router.post('/new',validateSession, function(request, response){
 
 //Get (GET) a list of saved courses
 router.get('/all',validateSession, function(request,response){
-    let user_id=request.course.id;
+    let userid=request.user.id;
     
     CourseModel.findAll({
-        where: {user_id: course.id}
+        where: {id: userid},
+        include: 'user'
     })
     .then(
         function findAllSuccess(data){
