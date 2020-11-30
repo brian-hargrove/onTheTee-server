@@ -10,7 +10,7 @@ module.exports = function(request,response,next) {
         console.log(sessionToken)
         if(!sessionToken) return response.status(403).send({auth: false, message: 'No token provided'});
         else {
-            jwt.verify(sessionToken, process.env.JWT_Secret, (err,decoded) =>{
+            jwt.verify(sessionToken, process.env.JWT_SECRET, (err,decoded) =>{
                 if(decoded){
                     User.findOne({where:{id: decoded.id}}).then(user => {
                         request.user = user;
