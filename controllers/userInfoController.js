@@ -8,7 +8,7 @@ let CourseModel = sequelize.import('../models/courseModel')
 let CardModel = sequelize.import('../models/cardModel')
 let validateSession = require('../middlewares/validate-session');
 
-const { unsubscribe } = require('./userController');
+
 
 
 //Create (POST) new user info
