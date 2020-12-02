@@ -12,7 +12,7 @@ let validateSession = require('../middlewares/validate-session');
 
 
 //Create (POST) new user info
-router.post('/new', function(request, response){
+router.post('/new',validateSession, function(request, response){
     let userId = request.user.id;
     let dateOfBirth = request.body.userinfo.dateOfBirth;
     let hand = request.body.userinfo.hand;
