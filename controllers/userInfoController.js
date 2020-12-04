@@ -49,7 +49,7 @@ router.get('/getuserinfo',validateSession, (request,response)=>{
     .then(function createSuccess(data){
         response.status(200).json({
             message: 'User Info Found',
-            data:data
+            data: data
         })
     }).catch(err=> response.status(500).json(err))
 })
