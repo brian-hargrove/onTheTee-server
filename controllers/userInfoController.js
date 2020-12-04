@@ -41,7 +41,7 @@ router.post('/new',validateSession, function(request, response){
 router.get('/',validateSession, (request,response)=>{
     UserInfo.findAll({
         where: {
-             id: request.user.id
+            userId: userid
         }
         , 
         include: 'user'
