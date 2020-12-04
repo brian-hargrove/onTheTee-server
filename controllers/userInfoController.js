@@ -39,7 +39,7 @@ router.post('/new',validateSession, function(request, response){
 });
 
 router.get('/',validateSession, (request,response)=>{
-    UserInfo.findOne({
+    UserInfo.findAll({
         where: {
              id: request.user.id
         }
