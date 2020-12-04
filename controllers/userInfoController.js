@@ -38,7 +38,7 @@ router.post('/new',validateSession, function(request, response){
     );
 });
 
-router.get('/getuserinfo',validateSession, (request,response)=>{
+router.get('/',validateSession, (request,response)=>{
     UserInfo.findOne({
         where: {
              id: request.user.id
