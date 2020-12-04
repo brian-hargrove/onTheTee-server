@@ -38,10 +38,10 @@ router.post('/new',validateSession, function(request, response){
     );
 });
 
-router.get('/',validateSession, (request,response)=>{
-    UserInfo.findAll({
+router.get('/getuserinfo',validateSession, (request,response)=>{
+    UserInfo.findOne({
         where: {
-            userId: userid
+             id: request.user.id
         }
         , 
         include: 'user'
@@ -49,7 +49,7 @@ router.get('/',validateSession, (request,response)=>{
     .then(function createSuccess(data){
         response.status(200).json({
             message: 'User Info Found',
-            data: data
+            data:data
         })
     }).catch(err=> response.status(500).json(err))
 })
