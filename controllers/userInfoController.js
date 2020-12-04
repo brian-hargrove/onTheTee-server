@@ -42,8 +42,7 @@ router.get('/getuserinfo',validateSession, (request,response)=>{
     UserInfo.findOne({
         where: {
              id: request.user.id
-        }
-        , 
+        }, 
         include: 'user'
     })
     .then(function createSuccess(data){
