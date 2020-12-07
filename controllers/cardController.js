@@ -1,18 +1,18 @@
 let router = require('express').Router();
 const { request } = require('express');
-const { validate } = require('../db');
+// const { validate } = require('../db');
 let sequelize=require('../db');
 let User = sequelize.import('../models/user')
 let UserInfo = sequelize.import('../models/userInfoModel')
 let Score = sequelize.import('../models/scoreModel')
 let CourseModel = sequelize.import('../models/courseModel')
 let CardModel = sequelize.import('../models/cardModel')
-let validateSession = require('../middlewares/validate-session');
+// let validateSession = require('../middlewares/validate-session');
 const ScoreModel = require('../models/scoreModel');
 
 
 //Create (POST) new course information
-router.post('/new',validateSession, function(request, response){
+router.post('/new', function(request, response){
     let golfcourse = request.body.cards.golfcourse;
     let par1 = request.body.cards.par1;
     let par2 = request.body.cards.par2;
@@ -152,7 +152,7 @@ router.post('/new',validateSession, function(request, response){
 });
 
 // Get (GET) a list of saved scorecards
-router.get('/all',validateSession, function(request,response){
+router.get('/all', function(request,response){
     let userid=request.user.id;
     
     CardModel.findAll({
@@ -307,7 +307,7 @@ router.put('/:id', function(request, response){
 });
 
 //Remove(DELETE) a scorecard
-router.delete('/:id',validateSession, function(request, response){
+router.delete('/:id', function(request, response){
     let data = request.params.id;
     // let user_id=request.user.id;
 
