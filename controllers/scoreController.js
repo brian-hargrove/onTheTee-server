@@ -9,7 +9,6 @@ let CardModel = sequelize.import('../models/cardModel')
 let validateSession = require('../middlewares/validate-session');
 let ScoreModel = require('../models/scoreModel');
 
-
 //Create (POST) new score
 router.post('/new',validateSession, function(request, response){
     let golfcourse = request.body.score.golfcourse;

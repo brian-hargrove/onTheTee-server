@@ -8,7 +8,6 @@ let CourseModel = sequelize.import('../models/courseModel')
 let CardModel = sequelize.import('../models/cardModel')
 let validateSession = require('../middlewares/validate-session');
 
-
 //Create (POST) new course
 router.post('/new',validateSession, function(request, response){
     let userId=request.user.id;

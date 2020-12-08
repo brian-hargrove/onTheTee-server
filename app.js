@@ -32,7 +32,6 @@ app.use('/score',score);
 app.use('/userinfo',userinfo);
 app.use('/scorecard', scorecard);
 
-
 app.listen(process.env.PORT, function(){
     console.log(`App is listening on ${process.env.PORT}.`)
 });

@@ -13,14 +13,11 @@ sequelize.authenticate().then(
     }
 );
 
-
 let User = sequelize.import('./models/user')
 let UserInfo = sequelize.import('./models/userInfoModel')
 let Score = sequelize.import('./models/scoreModel')
 let CourseModel = sequelize.import('./models/courseModel')
 let CardModel = sequelize.import('./models/cardModel')
-
-
 
 User.hasOne(UserInfo);
 UserInfo.belongsTo(User);
@@ -36,7 +33,6 @@ Score.belongsTo(CardModel);
 
 CourseModel.hasMany(Score);
 Score.belongsTo(CourseModel);
-
 
 
 module.exports = sequelize;

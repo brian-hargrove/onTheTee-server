@@ -115,5 +115,4 @@ router.delete('/admin',validateSession,function(request,response){
     );
 });
 
-
 module.exports=router;
